@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="华中农业大学题库管理系统大作业" />
+    <title>题库管理系统 - 华中农业大学</title>
+    
+    <!-- Ant Design 样式 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/5.14.0/reset.css" />
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #f0f2f5;
+        min-height: 100vh;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+      
+      /* 加载动画 */
+      .loading-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .ant-layout {
+          margin-left: 0 !important;
+        }
+        
+        .ant-layout-sider {
+          position: fixed;
+          z-index: 1000;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="loading-container">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+    
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <script>
+      // 页面加载完成时移除加载动画
+      window.addEventListener('load', function() {
+        const loadingContainer = document.querySelector('.loading-container');
+        if (loadingContainer) {
+          setTimeout(() => {
+            loadingContainer.style.opacity = '0';
+            loadingContainer.style.transition = 'opacity 0.3s ease';
+            setTimeout(() => {
+              loadingContainer.style.display = 'none';
+            }, 300);
+          }, 500);
+        }
+      });
+    </script>
+  </body>
+</html>
